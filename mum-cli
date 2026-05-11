@@ -6,8 +6,9 @@ aws ec2 run-instances \
 --image-id 'ami-0d64fa2865d3c59ec' \
 --instance-type 't3.micro' \
 --key-name 'mum-vpc1' \
---network-interfaces '{"SubnetId":"subnet-0cdb007f27afd34c3","AssociatePublicIpAddress":true,"DeviceIndex":0,"Groups":["sg-06cec0d5d9bedc3b4"]}' \
---credit-specification '{"CpuCredits":"unlimited"}' --tag-specifications '{"ResourceType":"instance","Tags":[{"Key":"Name","Value":"mum-test4"}]}' \
+--user-data 'IyEvYmluL2Jhc2gKdXNlcmFkZCBwYXZhbgplY2hvICJQYXZhbjEyMzQiIHwgc3VkbyBwYXNzd2QgLS1zdGRpbiBwYXZhbgpzZWQgLWkgJ3MvXiNcP1Bhc3N3b3JkQXV0aGVudGljYXRpb24gLiovUGFzc3dvcmRBdXRoZW50aWNhdGlvbiB5ZXMvJyAvZXRjL3NzaC9zc2hkX2NvbmZpZwpzeXN0ZW1jdGwgcmVzdGFydCBzc2hk' \
+--network-interfaces '{"SubnetId":"subnet-06f49b58b79c22872","AssociatePublicIpAddress":true,"DeviceIndex":0,"Groups":["sg-06cec0d5d9bedc3b4"]}' \
+--credit-specification '{"CpuCredits":"unlimited"}' --tag-specifications '{"ResourceType":"instance","Tags":[{"Key":"Name","Value":"mum-test5"}]}' \
 --metadata-options '{"HttpEndpoint":"enabled","HttpPutResponseHopLimit":2,"HttpTokens":"required"}' \
 --private-dns-name-options '{"HostnameType":"ip-name","EnableResourceNameDnsARecord":false,"EnableResourceNameDnsAAAARecord":false}' \
 --count '1' 
