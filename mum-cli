@@ -1,0 +1,24 @@
+Instance create:
+----------------
+# aws ec2 run-instances \
+--image-id 'ami-018e55bf7af694c44' \
+--instance-type 't3.small' --key-name 'mum-vpc1' \
+--user-data 'IyEvYmluL2Jhc2gKdXNlcmFkZCBwYXZhbgplY2hvICJQYXZhbjEyMzQiIHwgc3VkbyBwYXNzd2QgLS1zdGRpbiBwYXZhbgpzZWQgLWkgJ3MvXiNcP1Bhc3N3b3JkQXV0aGVudGljYXRpb24gLiovUGFzc3dvcmRBdXRoZW50aWNhdGlvbiB5ZXMvJyAvZXRjL3NzaC9zc2hkX2NvbmZpZwpzeXN0ZW1jdGwgcmVzdGFydCBzc2hk' \
+--network-interfaces '{"SubnetId":"subnet-0cdb007f27afd34c3","DeviceIndex":0,"Groups":["sg-06cec0d5d9bedc3b4"]}' \
+--launch-template '{"LaunchTemplateId":"lt-06fa58cbecebc4451","Version":"1"}' \
+--placement '{"AvailabilityZoneId":"aps1-az1"}' \
+--count '1' 
+
+
+Status check:
+--------------
+# aws ec2 describe-instances |grep -i instanceid
+# aws ec2 describe-instances \
+    --filters "Name=instance-state-name,Values=running" \
+    --query 'Reservations[].Instances[].{
+        Name: Tags[?Key==`Name`].Value | [0],
+        ID: InstanceId,
+        Type: InstanceType,
+        IP: PublicIpAddress
+    }' \
+    --output table
