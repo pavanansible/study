@@ -59,3 +59,21 @@ Terminate Instance:
 multiple instances:
 aws ec2 terminate-instances --instance-ids \
 $(aws ec2 describe-instances --query 'Reservations[*].Instances[*].InstanceId' --output text)
+
+
+Additional commands:
+--------------------
+#!/bin/bash
+useradd pavan
+echo "Pavan1234" | sudo passwd --stdin pavan
+sed -i 's/^#\?PasswordAuthentication .*/PasswordAuthentication yes/' /etc/ssh/sshd_config
+systemctl restart sshd
+echo "pavan ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
+
+sudo yum install -y https://s3.amazonaws.com/ec2-downloads-windows/SSMAgent/latest/linux_amd64/amazon-ssm-agent.rpm
+sudo systemctl start amazon-ssm-agent
+dnf install unzip
+
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install --bin-dir /usr/local/bin --install-dir /usr/local/aws-cli --update
